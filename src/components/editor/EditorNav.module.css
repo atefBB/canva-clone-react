@@ -1,0 +1,25 @@
+.editorNav {
+  /* background-color: #ffffff; */
+  background-image: linear-gradient(-30deg, #dc85ff , #ffbc2a);
+  /* border-bottom: 1px solid #dddddd; */
+  padding: 8px 4px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftNav {
+  display: flex;
+}
+
+.rightNav {
+  display: flex;
+}
+
+.leftNav > *{
+  margin: 0 4px;
+}
+
+.rightNav > *{
+  margin: 0 4px;
+}

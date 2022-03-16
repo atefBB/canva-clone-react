@@ -1,0 +1,93 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card img {
+
+  border-radius: 4px;
+}
+
+.imageBorder {
+  border: 1px solid #ddddde;
+  border-radius: 4px;
+  cursor: pointer;
+  background-size: 300px 300px;
+}
+
+.wrap {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.card img {
+  z-index: -1;
+}
+
+.title {
+  height: 20px;
+  padding: 8px 4px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title > * {
+  margin-right: 8px;
+}
+
+.toggle {
+  position: absolute;
+  top: -60px;
+  right: 10px;
+  transition: all 0.3s;
+  pointer-events: all;
+}
+
+.card:hover .toggle {
+  top: 10px;
+}
+
+.active {
+  top: 10px;
+}
+
+.loaderWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: calc(100% - 36px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.loader {
+  border: 8px solid #ffd22e;
+  border-top: 8px solid transparent;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tempImg {
+  opacity: 0.6;
+  filter: saturate(0);
+}

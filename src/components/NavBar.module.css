@@ -1,0 +1,21 @@
+.navBar {
+  padding: 8px 0;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav > li {
+  padding: 8px 12px;
+  letter-spacing: .01rem;
+}
+
+.logo > img{
+  width: 56px;
+  height: 56px;
+}

@@ -1,18 +1,21 @@
-import { connect } from 'react-redux';
-import AllDesigns from './AllDesigns';
-import { requestOwnedDesigns, deleteDesign } from '../../actions/design_actions';
+import { connect } from "react-redux";
+
+import AllDesigns from "./AllDesigns";
+import { requestOwnedDesigns } from "../../actions/design_actions";
 
 const mapStateToProps = (state: any) => {
   const designs = Object.values(state.entities.designs);
   return {
-    folder: { name: 'Trash' },
-    // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
-    designs: designs.filter((design) => design.userId === state.session.id && design.trash),
+    folder: { name: "Trash" },
+    designs: designs.filter(
+      // @ts-expect-error
+      (design) => design.userId === state.session.id && design.trash
+    ),
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  requestDesigns: () => dispatch(requestOwnedDesigns())
+  requestDesigns: () => dispatch(requestOwnedDesigns()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllDesigns);

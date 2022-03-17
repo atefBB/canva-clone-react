@@ -1,15 +1,15 @@
-import React from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import { FiUserCheck, FiChevronsLeft } from "react-icons/fi";
-import { googleIcon } from './AuthIcons';
+
+import { googleIcon } from "./AuthIcons";
 
 class LoginForm extends React.Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       animate: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,14 +40,14 @@ class LoginForm extends React.Component {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'email' does not exist on type 'Readonly<... Remove this comment to see the full error message
     const { email, password } = this.state;
     action({ email, password });
-    history.push('/');
+    history.push("/");
   }
 
   demoLogin() {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'demoLogin' does not exist on type 'Reado... Remove this comment to see the full error message
     const { demoLogin, history } = this.props;
     demoLogin();
-    history.push('/');
+    history.push("/");
   }
 
   render() {
@@ -56,7 +56,10 @@ class LoginForm extends React.Component {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'animate' does not exist on type 'Readonl... Remove this comment to see the full error message
     const { animate } = this.state;
     return (
-      <form className={animate ? 'animated auth-form' : 'auth-form'} onSubmit={this.handleSubmit}>
+      <form
+        className={animate ? "animated auth-form" : "auth-form"}
+        onSubmit={this.handleSubmit}
+      >
         <div className="return-login">
           <Link to="/signup">
             <FiChevronsLeft />
@@ -67,7 +70,11 @@ class LoginForm extends React.Component {
           {googleIcon}
           <span>Log in with Google</span>
         </button>
-        <button type="button" onClick={this.demoLogin} className="demo btn-outline">
+        <button
+          type="button"
+          onClick={this.demoLogin}
+          className="demo btn-outline"
+        >
           {/* {facebookIcon} */}
           <i>
             <FiUserCheck />
@@ -79,9 +86,19 @@ class LoginForm extends React.Component {
           <span>OR</span>
           <hr />
         </div>
-        {errors.length ? <div className="error">{errors.join('. ')}</div> : ''}
-        <input type="text" name="email" placeholder="Email" onChange={this.handleChange('email')} />
-        <input type="password" name="password" placeholder="Password" onChange={this.handleChange('password')} />
+        {errors.length ? <div className="error">{errors.join(". ")}</div> : ""}
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          onChange={this.handleChange("email")}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={this.handleChange("password")}
+        />
         <button type="submit" className="btn-blue">
           Log in
         </button>

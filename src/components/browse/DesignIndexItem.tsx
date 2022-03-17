@@ -1,11 +1,11 @@
-import React from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import { Link } from 'react-router-dom';
-import { FiMoreHorizontal, FiEye } from 'react-icons/fi';
-import styles from './DesignIndexItem.module.css';
-import IndexItemDropdownContainer from './index_item_dropdown_container';
-import ImageDropdownContainer from './image/upload_dropdown_container';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FiMoreHorizontal, FiEye } from "react-icons/fi";
 
+import IndexItemDropdownContainer from "./index_item_dropdown_container";
+import ImageDropdownContainer from "./image/upload_dropdown_container";
+
+import styles from "./DesignIndexItem.module.css";
 // eslint-disable-next-line react/prefer-stateless-function
 class DesignIndexItem extends React.Component {
   wrapperRef: any;
@@ -18,11 +18,11 @@ class DesignIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener("mousedown", this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
   setWrapperRef(node: any) {
@@ -37,8 +37,7 @@ class DesignIndexItem extends React.Component {
   }
 
   handleClickOutside(event: any) {
-    if (this.wrapperRef
-      && !this.wrapperRef.contains(event.target)) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({ dropdown: false });
     }
   }
@@ -58,14 +57,18 @@ class DesignIndexItem extends React.Component {
               </div>
             </Link>
           ) : (
-            // @ts-expect-error ts-migrate(2339) FIXME: Property 'transparent' does not exist on type 'Win... Remove this comment to see the full error message
-            <div className={styles.imageBorder} onClick={() => !temp && toggleModal(image.id)} style={{ backgroundImage: `url(${window.transparent})` }}>
+            <div
+              className={styles.imageBorder}
+              onClick={() => !temp && toggleModal(image.id)}
+              // @ts-expect-error ts-migrate(2339)
+              style={{ backgroundImage: `url(${window.transparent})` }}
+            >
               <img src={image.url} className={temp && styles.tempImg} alt="" />
             </div>
           )}
         </div>
         <div className={styles.title}>
-          {design && design.public ? <FiEye /> : ''}
+          {design && design.public ? <FiEye /> : ""}
           {design ? design.title : image.title}
         </div>
         {temp ? (
@@ -74,15 +77,37 @@ class DesignIndexItem extends React.Component {
           </div>
         ) : (
           <div className={styles.wrap}>
-            <div className={`${styles.toggle} ${dropdown ? styles.active : ''}`}>
-              <button type="button" className="btn-item" onClick={this.toggleDropdown}>
+            <div
+              className={`${styles.toggle} ${dropdown ? styles.active : ""}`}
+            >
+              <button
+                type="button"
+                className="btn-item"
+                onClick={this.toggleDropdown}
+              >
                 <FiMoreHorizontal />
               </button>
             </div>
           </div>
         )}
-        {design && dropdown ? <IndexItemDropdownContainer design={design} toggleDropdown={this.toggleDropdown} direction={direction} /> : ''}
-        {image && dropdown ? <ImageDropdownContainer image={image} toggleDropdown={this.toggleDropdown} direction={direction} /> : ''}
+        {design && dropdown ? (
+          <IndexItemDropdownContainer
+            design={design}
+            toggleDropdown={this.toggleDropdown}
+            direction={direction}
+          />
+        ) : (
+          ""
+        )}
+        {image && dropdown ? (
+          <ImageDropdownContainer
+            image={image}
+            toggleDropdown={this.toggleDropdown}
+            direction={direction}
+          />
+        ) : (
+          ""
+        )}
       </div>
     );
   }

@@ -1,6 +1,7 @@
-import React from 'react';
-import styles from './ImageItem.module.css';
-import { FiMoreHorizontal, FiEye } from 'react-icons/fi';
+import React from "react";
+import { FiMoreHorizontal } from "react-icons/fi";
+
+import styles from "./ImageItem.module.css";
 
 class ImageItem extends React.Component {
   constructor(props: any) {
@@ -11,14 +12,23 @@ class ImageItem extends React.Component {
   }
 
   render() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'thumb' does not exist on type 'Readonly<... Remove this comment to see the full error message
+    // @ts-expect-error
     const { thumb, id, toggleModal, addElement, image } = this.props;
     return (
       <div className={styles.item}>
-        <button type="button" className={styles.more} onClick={() => toggleModal(id)}>
+        <button
+          type="button"
+          className={styles.more}
+          onClick={() => toggleModal(id)}
+        >
           <FiMoreHorizontal />
         </button>
-        <img src={thumb} className={styles.image} onClick={() => addElement(image)}alt="" />
+        <img
+          src={thumb}
+          className={styles.image}
+          onClick={() => addElement(image)}
+          alt=""
+        />
       </div>
     );
   }

@@ -1,27 +1,28 @@
-import React from 'react';
+import React from "react";
 
 // const shapeGen = (shape) => <use href={window.circle} />;
 
 const shapeGen = (shape: any) => {
-  const mockupResponse = [ // need default width height and desc to search
+  const mockupResponse = [
+    // need default width height and desc to search
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'circle' does not exist on type 'Window &... Remove this comment to see the full error message
-    { id: 1, shape: 'circle', url: window.circle },
+    { id: 1, shape: "circle", url: window.circle },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'rectangle' does not exist on type 'Windo... Remove this comment to see the full error message
-    { id: 2, shape: 'rectangle', url: window.rectangle },
+    { id: 2, shape: "rectangle", url: window.rectangle },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'triangle' does not exist on type 'Window... Remove this comment to see the full error message
-    { id: 3, shape: 'triangle', url: window.triangle },
+    { id: 3, shape: "triangle", url: window.triangle },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'hexagon' does not exist on type 'Window ... Remove this comment to see the full error message
-    { id: 4, shape: 'hexagon', url: window.hexagon },
+    { id: 4, shape: "hexagon", url: window.hexagon },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'pentagon' does not exist on type 'Window... Remove this comment to see the full error message
-    { id: 5, shape: 'pentagon', url: window.pentagon },
+    { id: 5, shape: "pentagon", url: window.pentagon },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'roundedSquare' does not exist on type 'W... Remove this comment to see the full error message
-    { id: 6, shape: 'rounded-square', url: window.roundedSquare },
+    { id: 6, shape: "rounded-square", url: window.roundedSquare },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'heart' does not exist on type 'Window & ... Remove this comment to see the full error message
-    { id: 7, shape: 'heart', url: window.heart },
+    { id: 7, shape: "heart", url: window.heart },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'star' does not exist on type 'Window & t... Remove this comment to see the full error message
-    { id: 8, shape: 'star', url: window.star },
+    { id: 8, shape: "star", url: window.star },
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'rightTriangle' does not exist on type 'W... Remove this comment to see the full error message
-    { id: 9, shape: 'right-triangle', url: window.rightTriangle },
+    { id: 9, shape: "right-triangle", url: window.rightTriangle },
   ];
   for (const item of mockupResponse) {
     if (item.shape === shape) {
@@ -51,13 +52,16 @@ const shapeGen = (shape: any) => {
 // };
 
 const Shape = ({
-  elementAttr: {
-    shape, width, height, color,
-  },
+  elementAttr: { shape, width, height, color },
 
-  zoom
+  zoom,
 }: any) => (
-  <svg width={width * zoom} height={height * zoom} className="cursor" style={{ fill: color }}>
+  <svg
+    width={width * zoom}
+    height={height * zoom}
+    className="cursor"
+    style={{ fill: color }}
+  >
     {shapeGen(shape)}
   </svg>
 );

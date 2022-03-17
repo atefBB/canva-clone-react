@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Root from "./components/Root";
+import { Main } from "./components/Main";
 import configureStore from "./store/store";
 // import * as designActions from './actions/design_actions';
 // import { signup, login, logout } from './actions/session_actions';
@@ -41,5 +41,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.deleteDesign = designActions.deleteDesign;
 
   const root = document.getElementById("root");
-  ReactDOM.render(<Root store={store} />, root);
+  ReactDOM.render(<Main store={store} />, root);
 });

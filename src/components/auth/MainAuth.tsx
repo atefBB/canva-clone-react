@@ -1,22 +1,23 @@
-import React from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import { Switch } from 'react-router-dom';
-import { AuthRoute } from '../../util/route_util';
-import SignupAuthFormContainer from './SignupAuthFormContainer';
-import LoginAuthFormContainer from './LoginAuthFormContainer';
-import styles from './MainAuth.module.css';
+import React from "react";
+import { Switch } from "react-router-dom";
 
-const MainAuth = () => (
+import { AuthRoute } from "../../util/route_util";
+import SignupAuthFormContainer from "./SignupAuthFormContainer";
+import LoginAuthFormContainer from "./LoginAuthFormContainer";
+
+import styles from "./MainAuth.module.css";
+
+export const MainAuth = () => (
   <div className={styles.main}>
     <Switch>
+      {/* @ts-expect-error */}
       <AuthRoute path="/login" component={LoginAuthFormContainer} />
+      {/* @ts-expect-error */}
       <AuthRoute path="/" component={SignupAuthFormContainer} />
     </Switch>
     <div className={styles.splash}>
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'splash' does not exist on type 'Window &... Remove this comment to see the full error message
+      {/* @ts-expect-error */}
       <img src={window.splash} alt="" />
     </div>
   </div>
 );
-
-export default MainAuth;

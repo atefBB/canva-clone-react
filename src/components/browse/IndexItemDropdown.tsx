@@ -1,10 +1,16 @@
-import React from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
-  FiTrash2, FiFolder, FiLink, FiEyeOff, FiEye, FiDownload, FiRotateCcw,
-} from 'react-icons/fi';
-import styles from './IndexItemDropdown.module.css';
+  FiTrash2,
+  FiFolder,
+  FiLink,
+  FiEyeOff,
+  FiEye,
+  FiDownload,
+  FiRotateCcw,
+} from "react-icons/fi";
+
+import styles from "./IndexItemDropdown.module.css";
 
 class IndexItemDropdown extends React.Component {
   constructor(props: any) {
@@ -108,7 +114,10 @@ class IndexItemDropdown extends React.Component {
     const { design, folders, currentUser, direction } = this.props;
     if (design.userId !== currentUser.id) {
       return (
-        <div className={`${styles.dropdownCard} ${animate ? styles.animate : ''}`} style={{ right: `${direction ? -278 : 10}px` }}>
+        <div
+          className={`${styles.dropdownCard} ${animate ? styles.animate : ""}`}
+          style={{ right: `${direction ? -278 : 10}px` }}
+        >
           <ul className={styles.dropDown}>
             <li className={styles.title}>
               <h2>{design.title}</h2>
@@ -135,7 +144,10 @@ class IndexItemDropdown extends React.Component {
     }
     if (move) {
       return (
-        <div className={`${styles.dropdownCard} ${animate ? styles.animate : ''}`} style={{ right: `${direction ? -278 : 10}px` }}>
+        <div
+          className={`${styles.dropdownCard} ${animate ? styles.animate : ""}`}
+          style={{ right: `${direction ? -278 : 10}px` }}
+        >
           <ul className={styles.dropDown}>
             <li className={styles.title}>
               <h2>{design.title}</h2>
@@ -143,17 +155,25 @@ class IndexItemDropdown extends React.Component {
             <li>
               <hr className={styles.hr} />
             </li>
-            {folders.map((folder: any) => <li className={styles.listItem} onClick={() => this.changeFolder(folder.id)}>
-              <FiFolder className={styles.icon} />
-              <span className="ml-8">{folder.name}</span>
-            </li>)}
+            {folders.map((folder: any) => (
+              <li
+                className={styles.listItem}
+                onClick={() => this.changeFolder(folder.id)}
+              >
+                <FiFolder className={styles.icon} />
+                <span className="ml-8">{folder.name}</span>
+              </li>
+            ))}
           </ul>
         </div>
       );
     }
     if (design.trash) {
       return (
-        <div className={`${styles.dropdownCard} ${animate ? styles.animate : ''}`} style={{ right: `${direction ? -278 : 10}px` }}>
+        <div
+          className={`${styles.dropdownCard} ${animate ? styles.animate : ""}`}
+          style={{ right: `${direction ? -278 : 10}px` }}
+        >
           <ul className={styles.dropDown}>
             <li className={styles.title}>
               <h2>{design.title}</h2>
@@ -174,10 +194,19 @@ class IndexItemDropdown extends React.Component {
       );
     }
     return (
-      <div className={`${styles.dropdownCard} ${animate ? styles.animate : ''}`} style={{ right: `${direction ? -278 : 10}px` }}>
+      <div
+        className={`${styles.dropdownCard} ${animate ? styles.animate : ""}`}
+        style={{ right: `${direction ? -278 : 10}px` }}
+      >
         <ul className={styles.dropDown}>
           <li className={styles.title}>
-            <input className={styles.input} type="text" value={title} onChange={this.handleChange('title')} onBlur={this.handleSubmit} />
+            <input
+              className={styles.input}
+              type="text"
+              value={title}
+              onChange={this.handleChange("title")}
+              onBlur={this.handleSubmit}
+            />
           </li>
           <li>
             <hr className={styles.hr} />
@@ -198,7 +227,6 @@ class IndexItemDropdown extends React.Component {
                 <span className="ml-8">Make design public</span>
               </>
             )}
-
           </li>
           <li className={styles.listItem} onClick={this.toggleMove}>
             <FiFolder className={styles.icon} />

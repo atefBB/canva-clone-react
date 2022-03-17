@@ -1,23 +1,19 @@
-import React from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import { FiUserCheck } from "react-icons/fi";
-import { googleIcon } from './AuthIcons';
 
-const ExternalSignup = ({
-  changeView,
-  demoLogin,
-  animate
-}: any) => (
-  <div className={animate ? 'animated auth-form' : 'auth-form'}>
+import { googleIcon } from "./AuthIcons";
+
+const ExternalSignup = ({ changeView, demoLogin, animate }: any) => (
+  <div className={animate ? "animated auth-form" : "auth-form"}>
     <h1>
       Design anything.
       <br />
       Publish anywhere.
     </h1>
     <p>
-      Create a account, it&apos;s free.
-      Gwaphics is loved by beginners and experts, teams and individuals.
+      Create a account, it&apos;s free. Gwaphics is loved by beginners and
+      experts, teams and individuals.
     </p>
     <button type="button" className="google btn-outline" disabled>
       {googleIcon}

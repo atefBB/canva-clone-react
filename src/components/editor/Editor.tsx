@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './Editor.module.css';
-import EditorNav from './EditorNav';
-import DesignDrawer from './DesignDrawer';
-import WorkArea from './WorkArea';
+import React from "react";
+import styles from "./Editor.module.css";
+import EditorNav from "./EditorNav";
+import DesignDrawer from "./DesignDrawer";
+import WorkArea from "./WorkArea";
 
 class Editor extends React.Component {
   updateElementPos: any;
@@ -72,12 +72,16 @@ class Editor extends React.Component {
   }
 
   screenshot() {
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'design' does not exist on type 'Readonly... Remove this comment to see the full error message
-    const { design: { id, width, height } } = this.state;
-    return fetch(`${process.env.SCREENSHOT_URL}screenshot?id=${id}&width=${width}&height=${height}`)
+    const {
+      // @ts-expect-error ts-migrate(2339)
+      design: { id, width, height },
+    } = this.state;
+    return fetch(
+      `${process.env.SCREENSHOT_URL}screenshot?id=${id}&width=${width}&height=${height}`
+    )
       .then((res) => res.blob())
       .then((blob) => {
-        const file = new File([blob], 'File name', { type: 'image/png' });
+        const file = new File([blob], "File name", { type: "image/png" });
         return file;
       });
   }
@@ -88,49 +92,53 @@ class Editor extends React.Component {
     // @ts-expect-error ts-migrate(2339) FIXME: Property 'updateDesign' does not exist on type 'Re... Remove this comment to see the full error message
     const { updateDesign, elements } = this.props;
     elements.forEach((element: any) => {
-      if (typeof element.id === 'string') {
+      if (typeof element.id === "string") {
         delete element.id;
       }
     });
     design.elementsAttributes = elements;
     delete design.thumbnail;
     this.setState({ loading: true });
-    updateDesign(design)
-      .then(() => {
-        this.screenshot().then(
-          (file) => {
-            const formData = new FormData();
-            formData.append('design[id]', design.id);
-            formData.append('design[thumbnail]', file);
-            // @ts-expect-error ts-migrate(2581) FIXME: Cannot find name '$'. Do you need to install type ... Remove this comment to see the full error message
-            $.ajax({
-              url: `/api/designs/${design.id}`,
-              method: 'PATCH',
-              data: formData,
-              processData: false,
-              contentType: false,
-            }).then(() => this.setState({ loading: false }));
-          },
-        );
+    updateDesign(design).then(() => {
+      this.screenshot().then((file) => {
+        const formData = new FormData();
+        formData.append("design[id]", design.id);
+        formData.append("design[thumbnail]", file);
+        // @ts-expect-error ts-migrate(2581) FIXME: Cannot find name '$'. Do you need to install type ... Remove this comment to see the full error message
+        $.ajax({
+          url: `/api/designs/${design.id}`,
+          method: "PATCH",
+          data: formData,
+          processData: false,
+          contentType: false,
+        }).then(() => this.setState({ loading: false }));
       });
+    });
   }
 
   render() {
     const {
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'design' does not exist on type 'Readonly... Remove this comment to see the full error message
-      design, zoom, selected, loading, selection
+      // @ts-expect-error
+      design,
+      // @ts-expect-error
+      zoom,
+      // @ts-expect-error
+      selected,
+      // @ts-expect-error
+      loading,
+      // @ts-expect-error
+      selection,
     } = this.state;
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'elements' does not exist on type 'Readon... Remove this comment to see the full error message
+    // @ts-expect-error ts-migrate(2339)
     const { elements } = this.props;
-    // return <Viewer design={design} elements={elements} zoom={zoom} />
     return (
       <div className={styles.editorContainer}>
         <EditorNav updateDesign={this.updateDesign} loading={loading} />
         <div className={styles.editorBottomContainer}>
-          // @ts-expect-error ts-migrate(2322) FIXME: Type '{ addElement: (element: any) => void; zoom: ... Remove this comment to see the full error message
+          {/* @ts-expect-error ts-migrate(2322) */}
           <DesignDrawer addElement={this.addElement} zoom={zoom} />
           <WorkArea
-            // @ts-expect-error ts-migrate(2322) FIXME: Type '{ design: any; elements: any; zoom: any; upd... Remove this comment to see the full error message
+            // @ts-expect-error ts-migrate(2322)
             design={design}
             elements={elements}
             zoom={zoom}
@@ -142,10 +150,34 @@ class Editor extends React.Component {
             setSelection={this.setSelection}
           />
           <div className={styles.zoomBar}>
-            <button type="button" className="btn-icon" onClick={() => this.changeZoomFactor(1)}>100%</button>
-            <button type="button" className="btn-icon" onClick={() => this.changeZoomFactor(0.75)}>75%</button>
-            <button type="button" className="btn-icon" onClick={() => this.changeZoomFactor(0.5)}>50%</button>
-            <button type="button" className="btn-icon" onClick={() => this.changeZoomFactor(0.25)}>25%</button>
+            <button
+              type="button"
+              className="btn-icon"
+              onClick={() => this.changeZoomFactor(1)}
+            >
+              100%
+            </button>
+            <button
+              type="button"
+              className="btn-icon"
+              onClick={() => this.changeZoomFactor(0.75)}
+            >
+              75%
+            </button>
+            <button
+              type="button"
+              className="btn-icon"
+              onClick={() => this.changeZoomFactor(0.5)}
+            >
+              50%
+            </button>
+            <button
+              type="button"
+              className="btn-icon"
+              onClick={() => this.changeZoomFactor(0.25)}
+            >
+              25%
+            </button>
           </div>
         </div>
       </div>

@@ -1,15 +1,13 @@
-import * as ApiUtil from '../util/session_api_util';
-import { updateMode } from './mode_actions';
+import * as ApiUtil from "../util/session_api_util";
 
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
-export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
-export const RECEIVE_SESSION_ERRORS = 'RECEIVE_ERRORS';
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-
+export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
+export const RECEIVE_SESSION_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receiveCurrentUser = (currentUser: any) => ({
   type: RECEIVE_CURRENT_USER,
-  user: currentUser
+  user: currentUser,
 });
 
 const logoutCurrentUser = () => ({
@@ -18,26 +16,28 @@ const logoutCurrentUser = () => ({
 
 export const receiveErrors = (errors: any) => ({
   type: RECEIVE_SESSION_ERRORS,
-  errors
+  errors,
 });
 
 export const clearErrors = () => ({
   type: CLEAR_ERRORS,
 });
 
-export const signup = (user: any) => (dispatch: any) => ApiUtil.signup(user)
-  .then((responseUser: any) => dispatch(receiveCurrentUser(responseUser)),
-    (res: any) => dispatch(receiveErrors(res.responseJSON)));
+export const signup = (user: any) => (dispatch: any) =>
+  ApiUtil.signup(user).then(
+    (responseUser: any) => dispatch(receiveCurrentUser(responseUser)),
+    (res: any) => dispatch(receiveErrors(res.responseJSON))
+  );
 
-export const login = (user: any) => (dispatch: any) => ApiUtil.login(user)
-  .then((responseUser: any) => {
-    dispatch(receiveCurrentUser(responseUser));
-    // dispatch(updateMode('browse'));
-  },
-  (res: any) => dispatch(receiveErrors(res.responseJSON)));
+export const login = (user: any) => (dispatch: any) =>
+  ApiUtil.login(user).then(
+    (responseUser: any) => {
+      dispatch(receiveCurrentUser(responseUser));
+    },
+    (res: any) => dispatch(receiveErrors(res.responseJSON))
+  );
 
-export const logout = () => (dispatch: any) => ApiUtil.logout()
-  .then(() => {
+export const logout = () => (dispatch: any) =>
+  ApiUtil.logout().then(() => {
     dispatch(logoutCurrentUser());
-    // dispatch(updateMode('splash'));
   });
